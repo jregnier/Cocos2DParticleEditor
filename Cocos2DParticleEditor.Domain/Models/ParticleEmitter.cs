@@ -1,29 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using Cocos2D;
-
-namespace Cocos2DParticleEditor.Domain.Models
+﻿namespace Cocos2DParticleEditor.Domain.Models
 {
-    public enum PredefinedParticles
-    {
-        Explosion,
-        Fire,
-        Fireworks,
-        Flower,
-        Galaxy,
-        Meteor,
-        Rain,
-        Smoke,
-        Snow,
-        Spriral,
-        Sun
-    };
+    using Cocos2D;
 
+    /// <summary>
+    /// Static class containing tools used to interact with the cocos2d particle systems.
+    /// </summary>
     public static class ParticleUtility
     {
+
+        /// <summary>
+        /// Initializes a new instance of a given particle system.
+        /// </summary>
+        /// <param name="particle">A <see cref="PredefinedParticles"/> indicating which particle system to create.</param>
+        /// <returns>A new instance of a <see cref="CCParticleSystem"/></returns>
         public static CCParticleSystem GetPredefinedParticle(PredefinedParticles particle)
         {
             CCParticleSystem system = null;
@@ -33,36 +22,47 @@ namespace Cocos2DParticleEditor.Domain.Models
                 case PredefinedParticles.Explosion:
                     system = new CCParticleExplosion();
                     break;
+
                 case PredefinedParticles.Fire:
                     system = new CCParticleFire();
                     break;
+
                 case PredefinedParticles.Fireworks:
                     system = new CCParticleFireworks();
                     break;
+
                 case PredefinedParticles.Flower:
                     system = new CCParticleFlower();
                     break;
+
                 case PredefinedParticles.Galaxy:
                     system = new CCParticleGalaxy();
                     break;
+
                 case PredefinedParticles.Meteor:
                     system = new CCParticleMeteor();
                     break;
+
                 case PredefinedParticles.Rain:
                     system = new CCParticleRain();
                     break;
+
                 case PredefinedParticles.Smoke:
                     system = new CCParticleSmoke();
                     break;
+
                 case PredefinedParticles.Snow:
                     system = new CCParticleSnow();
                     break;
+
                 case PredefinedParticles.Spriral:
                     system = new CCParticleSpiral();
                     break;
+
                 case PredefinedParticles.Sun:
                     system = new CCParticleSun();
                     break;
+
                 default:
                     break;
             }
@@ -70,6 +70,11 @@ namespace Cocos2DParticleEditor.Domain.Models
             return system;
         }
 
+        /// <summary>
+        /// Convert a given blend function to a blend function from the cocos2d engine.
+        /// </summary>
+        /// <param name="blendFunc">A <see cref="BlendFunctions"/> representing which cocos2d blend function to return.</param>
+        /// <returns>A new instance of a <see cref="CCBlendFunc"/></returns>
         public static CCBlendFunc GetCCBlendFunc(BlendFunctions blendFunc)
         {
             CCBlendFunc func = new CCBlendFunc();
@@ -79,12 +84,15 @@ namespace Cocos2DParticleEditor.Domain.Models
                 case BlendFunctions.Additive:
                     func = CCBlendFunc.Additive;
                     break;
+
                 case BlendFunctions.AlphaBlend:
                     func = CCBlendFunc.AlphaBlend;
                     break;
+
                 case BlendFunctions.NonPremultiplied:
                     func = CCBlendFunc.NonPremultiplied;
                     break;
+
                 case BlendFunctions.Opaque:
                     func = CCBlendFunc.Opaque;
                     break;
@@ -93,6 +101,11 @@ namespace Cocos2DParticleEditor.Domain.Models
             return func;
         }
 
+        /// <summary>
+        /// Converts a cocos2d blend function object to a local defined enumeration.
+        /// </summary>
+        /// <param name="blendFunc">A <see cref="CCBlendFunc"/> which needs to be converted.</param>
+        /// <returns>A <see cref="BlendFunctions"/> enumeration.</returns>
         public static BlendFunctions GetBlendFunction(CCBlendFunc blendFunc)
         {
             BlendFunctions func = BlendFunctions.NONE;

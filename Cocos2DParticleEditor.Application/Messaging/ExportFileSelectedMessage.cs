@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Messaging;
-
-namespace Cocos2DParticleEditor.Application.Messaging
+﻿namespace Cocos2DParticleEditor.Application.Messaging
 {
+    using GalaSoft.MvvmLight.Messaging;
+
+    /// <summary>
+    /// A custom message used to indicated that a file has been selected.
+    /// </summary>
     public class ExportFileSelectedMessage : GenericMessage<string>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExportFileSelectedMessage"/> class.
+        /// </summary>
+        /// <param name="param"></param>
         public ExportFileSelectedMessage(string param)
             : base(param)
         {

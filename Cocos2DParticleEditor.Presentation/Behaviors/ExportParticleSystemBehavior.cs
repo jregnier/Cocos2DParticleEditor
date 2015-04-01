@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Interactivity;
-using Cocos2DParticleEditor.Application.Messaging;
-using GalaSoft.MvvmLight.Messaging;
-
-namespace Cocos2DParticleEditor.Presentation.Behaviors
+﻿namespace Cocos2DParticleEditor.Presentation.Behaviors
 {
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Interactivity;
+    using Cocos2DParticleEditor.Application.Messaging;
+    using GalaSoft.MvvmLight.Messaging;
+
+    /// <summary>
+    /// Represents a custom behavior used to show a save file dialog.
+    /// </summary>
     public class ExportParticleSystemBehavior : Behavior<Button>
     {
         public MessageIdentifiers MessageIdentifier { get; set; }
+
         public string InitialFolder { get; set; }
+
         public string Title { get; set; }
+
         public string Filter { get; set; }
 
         protected override void OnAttached()
@@ -24,7 +25,7 @@ namespace Cocos2DParticleEditor.Presentation.Behaviors
             AssociatedObject.Click += AssociatedObject_Click;
         }
 
-        void AssociatedObject_Click(object sender, RoutedEventArgs e)
+        private void AssociatedObject_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
             dialog.RestoreDirectory = true;

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Cocos2DParticleEditor.Domain.Models
+﻿namespace Cocos2DParticleEditor.Domain.Models
 {
+    /// <summary>
+    /// Enumeration identifying the type of blend function to use.
+    /// </summary>
     public enum BlendFunctions
     {
         NONE,

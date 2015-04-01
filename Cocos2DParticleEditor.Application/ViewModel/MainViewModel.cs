@@ -1,16 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Linq;
-using Cocos2D;
-using Cocos2DParticleEditor.Domain.Models;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.CommandWpf;
-using Cocos2DParticleEditor.Application.Messaging;
-
 namespace Cocos2DParticleEditor.Application.ViewModel
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using Cocos2DParticleEditor.Application.Messaging;
+    using Cocos2DParticleEditor.Domain.Models;
+    using GalaSoft.MvvmLight;
+    using GalaSoft.MvvmLight.CommandWpf;
+    using GalaSoft.MvvmLight.Messaging;
+
+    /// <summary>
+    /// The main view model for the application.
+    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         private Game1 game;
@@ -28,7 +30,6 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         /// </summary>
         public MainViewModel()
         {
-
             this.RegisterMessages();
         }
 
@@ -41,7 +42,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
         /// <summary>
         /// Sets and gets the PredefinedParticles property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public List<PredefinedParticles> PredefinedParticlesCollection
         {
@@ -63,12 +64,12 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
         /// <summary>
         /// Sets and gets the SelectedPredefinedParticle property.
-        /// Changes to that property's value raise the PropertyChanged event. 
-        /// </summary> 
+        /// Changes to that property's value raise the PropertyChanged event.
+        /// </summary>
         public PredefinedParticles SelectedPredefinedParticle
         {
             get
-            {   
+            {
                 return selectedPredefinedParticle;
             }
 
@@ -93,7 +94,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
         /// <summary>
         /// Sets and gets the IsPlaying property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public bool IsPlaying
         {
@@ -121,7 +122,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
         /// <summary>
         /// Sets and gets the ParticleEmitterProperties property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public EmitterProperties ParticleEmitterProperties
         {
@@ -154,7 +155,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
         /// <summary>
         /// Sets and gets the MoveParticleEmitter property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public bool MoveParticleEmitter
         {
@@ -177,7 +178,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
             }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Commands
 
@@ -188,7 +189,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
         /// <summary>
         /// Sets and gets the PlayCommand property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public RelayCommand PlayCommand
         {
@@ -210,7 +211,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
         /// <summary>
         /// Sets and gets the StopCommand property.
-        /// Changes to that property's value raise the PropertyChanged event. 
+        /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
         public RelayCommand StopCommand
         {
@@ -225,11 +226,14 @@ namespace Cocos2DParticleEditor.Application.ViewModel
             }
         }
 
-        #endregion
+        #endregion Commands
 
         #region Private Methods
 
-        void RegisterMessages()
+        /// <summary>
+        /// Register messages that this view model should listen to.
+        /// </summary>
+        private void RegisterMessages()
         {
             Messenger.Default.Register<GenericMessage<IntPtr>>(
                 this,
@@ -252,30 +256,47 @@ namespace Cocos2DParticleEditor.Application.ViewModel
                 });
         }
 
-        bool CanPlay()
+        /// <summary>
+        /// Indicates if the play command can be run.
+        /// </summary>
+        /// <returns>true if the play command can be run; otherwise false.</returns>
+        private bool CanPlay()
         {
             return !isPlaying;
         }
 
-        void Play()
+        /// <summary>
+        /// Start running the particle system.
+        /// </summary>
+        private void Play()
         {
             isPlaying = true;
 
             this.SetParticleSystem();
         }
 
-        bool CanStop()
+        /// <summary>
+        /// Indicates if the stop command can be run.
+        /// </summary>
+        /// <returns>true if the stop command can be run; otherwise false.</returns>
+        private bool CanStop()
         {
-            return isPlaying; 
+            return isPlaying;
         }
 
-        void Stop()
+        /// <summary>
+        /// Stop running the particle system.
+        /// </summary>
+        private void Stop()
         {
             ParticleLayer.StopEmitter();
             isPlaying = false;
         }
 
-        void SetParticleSystem()
+        /// <summary>
+        /// Set the particle system to the selected one.
+        /// </summary>
+        private void SetParticleSystem()
         {
             if (isPlaying)
             {
@@ -286,16 +307,22 @@ namespace Cocos2DParticleEditor.Application.ViewModel
             }
         }
 
-        void SaveParticleSystem()
+        /// <summary>
+        /// Save the particle system to disk.
+        /// </summary>
+        private void SaveParticleSystem()
         {
-
         }
 
-        void SaveAsParticleSystem(string filePath)
+        /// <summary>
+        /// Export the particle system to a given path.
+        /// </summary>
+        /// <param name="filePath"></param>
+        private void SaveAsParticleSystem(string filePath)
         {
             this.particleEmitterProperties.SaveAs(filePath);
         }
 
-        #endregion
+        #endregion Private Methods
     }
 }
