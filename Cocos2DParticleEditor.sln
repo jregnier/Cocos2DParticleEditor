@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cocos2DParticleEditor", "Cocos2DParticleEditor\Cocos2DParticleEditor.csproj", "{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cocos2DParticleEditor.Presentation", "Cocos2DParticleEditor.Presentation\Cocos2DParticleEditor.Presentation.csproj", "{28270055-5EDF-430C-BBD5-3AC81A678597}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cocos2DParticleEditor.Application", "Cocos2DParticleEditor.Application\Cocos2DParticleEditor.Application.csproj", "{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cocos2DParticleEditor.Domain", "Cocos2DParticleEditor.Domain\Cocos2DParticleEditor.Domain.csproj", "{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Debug|x86.ActiveCfg = Debug|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Debug|x86.Build.0 = Debug|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Release|Any CPU.ActiveCfg = Release|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Release|Mixed Platforms.Build.0 = Release|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Release|x86.ActiveCfg = Release|x86
+		{C2AA92EF-1C66-4100-B17B-613EA7CB7BCC}.Release|x86.Build.0 = Release|x86
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Debug|x86.Build.0 = Debug|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{28270055-5EDF-430C-BBD5-3AC81A678597}.Release|x86.ActiveCfg = Release|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Debug|x86.Build.0 = Debug|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C0B6D38E-1348-48C8-A3F1-FCFE3B2FEC11}.Release|x86.ActiveCfg = Release|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Debug|x86.Build.0 = Debug|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{94C99659-D0AD-4ACE-AA6C-6FF17255BB00}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.Interception.2.1.505.0\lib\NET35;packages\EnterpriseLibrary.Common.5.0.505.0\lib\NET35
+	EndGlobalSection
+EndGlobal
