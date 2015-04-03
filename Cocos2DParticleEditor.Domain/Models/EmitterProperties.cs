@@ -963,65 +963,65 @@
         /// Create a dictionary containing a mapping of all the property names and values to write to the file.
         /// </summary>
         /// <returns>A dictionary containing a mapping of all the properties to write to the file.</returns>
-        private Dictionary<string, object> CreateNodes()
+        private List<PListNode> CreateNodes()
         {
-            Dictionary<string, object> particleSystemNodes;
+            List<PListNode> particleSystemNodes;
 
-            particleSystemNodes = new Dictionary<string, object>()
+            particleSystemNodes = new List<PListNode>()
             {
-                {"angle", this.angle},
-                {"angleVariance", this.angleVar},
-                {"blendFuncDestination", ParticleUtility.GetCCBlendFunc(this.blendFunc).Destination},
-                {"blendFuncSource", ParticleUtility.GetCCBlendFunc(this.blendFunc).Source},
-                {"duration", this.duration},
-                {"emitterType", (float)this.emitterMode},
-                {"emissionRate", this.emissionRate},
-                {"finishColorAlpha", this.endColor.ScA},
-                {"finishColorBlue", this.endColor.ScB},
-                {"finishColorGreen", this.endColor.ScG},
-                {"finishColorRed", this.endColor.ScR},
-                {"finishColorVarianceAlpha", this.endColorVar.ScA},
-                {"finishColorVarianceBlue", this.endColorVar.ScB},
-                {"finishColorVarianceGreen", this.endColorVar.ScG},
-                {"finishColorVarianceRed", this.endColorVar.ScR},
-                {"rotationStart", this.startSpin},
-                {"rotationStartVariance", this.startSpinVar},
-                {"rotationEnd", this.endSpin},
-                {"rotationEndVariance", this.endSpinVar},
-                {"finishParticleSize", this.endSize},
-                {"finishParticleSizeVariance", this.endSizeVar},
-                {"gravityx", this.gravityX},
-                {"gravityy", this.gravityY},
-                {"maxParticles", this.totalParticles},
-                {"maxRadius", this.startRadius},
-                {"maxRadiusVariance", this.startRadiusVar},
-                {"minRadius", this.endRadius},
-                {"minRadiusVariance", this.endRadiusVar},
-                {"particleLifespan", this.life},
-                {"particleLifespanVariance", this.lifeVar},
-                {"radialAccelVariance", this.radialAccelVar},
-                {"radialAcceleration", this.radialAccel},
-                {"rotatePerSecond", this.rotatePerSecond},
-                {"rotatePerSecondVariance", this.rotatePerSecondVar},
-                {"sourcePositionVariancex", this.positionVar.X},
-                {"sourcePositionVariancey", this.positionVar.Y},
-                {"sourcePositionx", this.position.X},
-                {"sourcePositiony", this.position.Y},
-                {"speed", this.speed},
-                {"speedVariance", this.speedVar},
-                {"startColorAlpha", this.startColor.ScA},
-                {"startColorBlue", this.startColor.ScB},
-                {"startColorGreen", this.startColor.ScG},
-                {"startColorRed", this.startColor.ScR},
-                {"startColorVarianceAlpha", this.startColorVar.ScA},
-                {"startColorVarianceBlue", this.startColorVar.ScB},
-                {"startColorVarianceGreen", this.startColorVar.ScG},
-                {"startColorVarianceRed", this.startColorVar.ScR},
-                {"startParticleSize", this.startSize},
-                {"startParticleSizeVariance", this.startSizeVar},
-                {"tangentialAccelVariance", this.tangencialAccelVar},
-                {"tangentialAcceleration", this.tangencialAccel},
-                {"textureFileName", this.texture},
+                new PListNode("angle", this.angle, PListValueType.REAL),
+                new PListNode("angleVariance", this.angleVar, PListValueType.REAL),
+                new PListNode("blendFuncDestination", ParticleUtility.GetCCBlendFunc(this.blendFunc).Destination, PListValueType.INT),
+                new PListNode("blendFuncSource", ParticleUtility.GetCCBlendFunc(this.blendFunc).Source, PListValueType.INT),
+                new PListNode("duration", this.duration, PListValueType.REAL),
+                new PListNode("emitterType", (float)this.emitterMode, PListValueType.REAL),
+                new PListNode("emissionRate", this.emissionRate, PListValueType.REAL),
+                new PListNode("finishColorAlpha", this.endColor.ScA, PListValueType.REAL),
+                new PListNode("finishColorBlue", this.endColor.ScB, PListValueType.REAL),
+                new PListNode("finishColorGreen", this.endColor.ScG, PListValueType.REAL),
+                new PListNode("finishColorRed", this.endColor.ScR, PListValueType.REAL),
+                new PListNode("finishColorVarianceAlpha", this.endColorVar.ScA, PListValueType.REAL),
+                new PListNode("finishColorVarianceBlue", this.endColorVar.ScB, PListValueType.REAL),
+                new PListNode("finishColorVarianceGreen", this.endColorVar.ScG, PListValueType.REAL),
+                new PListNode("finishColorVarianceRed", this.endColorVar.ScR, PListValueType.REAL),
+                new PListNode("rotationStart", this.startSpin, PListValueType.REAL),
+                new PListNode("rotationStartVariance", this.startSpinVar, PListValueType.REAL),
+                new PListNode("rotationEnd", this.endSpin, PListValueType.REAL),
+                new PListNode("rotationEndVariance", this.endSpinVar, PListValueType.REAL),
+                new PListNode("finishParticleSize", this.endSize, PListValueType.REAL),
+                new PListNode("finishParticleSizeVariance", this.endSizeVar, PListValueType.REAL),
+                new PListNode("gravityx", this.gravityX, PListValueType.REAL),
+                new PListNode("gravityy", this.gravityY, PListValueType.REAL),
+                new PListNode("maxParticles", this.totalParticles, PListValueType.INT),
+                new PListNode("maxRadius", this.startRadius, PListValueType.REAL),
+                new PListNode("maxRadiusVariance", this.startRadiusVar, PListValueType.REAL),
+                new PListNode("minRadius", this.endRadius, PListValueType.REAL),
+                new PListNode("minRadiusVariance", this.endRadiusVar, PListValueType.REAL),
+                new PListNode("particleLifespan", this.life, PListValueType.REAL),
+                new PListNode("particleLifespanVariance", this.lifeVar, PListValueType.REAL),
+                new PListNode("radialAccelVariance", this.radialAccelVar, PListValueType.REAL),
+                new PListNode("radialAcceleration", this.radialAccel, PListValueType.REAL),
+                new PListNode("rotatePerSecond", this.rotatePerSecond, PListValueType.REAL),
+                new PListNode("rotatePerSecondVariance", this.rotatePerSecondVar, PListValueType.REAL),
+                new PListNode("sourcePositionVariancex", this.positionVar.X, PListValueType.REAL),
+                new PListNode("sourcePositionVariancey", this.positionVar.Y, PListValueType.REAL),
+                new PListNode("sourcePositionx", this.position.X, PListValueType.REAL),
+                new PListNode("sourcePositiony", this.position.Y, PListValueType.REAL),
+                new PListNode("speed", this.speed, PListValueType.REAL),
+                new PListNode("speedVariance", this.speedVar, PListValueType.REAL),
+                new PListNode("startColorAlpha", this.startColor.ScA, PListValueType.REAL),
+                new PListNode("startColorBlue", this.startColor.ScB, PListValueType.REAL),
+                new PListNode("startColorGreen", this.startColor.ScG, PListValueType.REAL),
+                new PListNode("startColorRed", this.startColor.ScR, PListValueType.REAL),
+                new PListNode("startColorVarianceAlpha", this.startColorVar.ScA, PListValueType.REAL),
+                new PListNode("startColorVarianceBlue", this.startColorVar.ScB, PListValueType.REAL),
+                new PListNode("startColorVarianceGreen", this.startColorVar.ScG, PListValueType.REAL),
+                new PListNode("startColorVarianceRed", this.startColorVar.ScR, PListValueType.REAL),
+                new PListNode("startParticleSize", this.startSize, PListValueType.REAL),
+                new PListNode("startParticleSizeVariance", this.startSizeVar, PListValueType.REAL),
+                new PListNode("tangentialAccelVariance", this.tangencialAccelVar, PListValueType.REAL),
+                new PListNode("tangentialAcceleration", this.tangencialAccel, PListValueType.REAL),
+                new PListNode("textureFileName", this.texture, PListValueType.STRING)
             };
 
             if (File.Exists(this.texture))
@@ -1032,7 +1032,7 @@
                 {
                     string imageData = Encoding.UTF8.GetString(bytes);
 
-                    particleSystemNodes.Add("textureImageData", imageData);
+                    particleSystemNodes.Add(new PListNode("textureImageData", imageData, PListValueType.STRING));
                 }
             }
 
@@ -1043,56 +1043,25 @@
         /// Save the particle system to a .plist file.
         /// </summary>
         /// <param name="path">The full path to the file.</param>
-        /// <param name="nodes">A dictionary containing all the properties and the names to write to the file.</param>
-        private void SaveFile(string path, Dictionary<string, object> nodes)
+        /// <param name="nodes">A list of <see cref="PListNode"/> containing all the properties and the names to write to the file.</param>
+        private void SaveFile(string path, List<PListNode> nodes)
         {
             using (XmlTextWriter writer = new XmlTextWriter(path, Encoding.UTF8))
             {
                 writer.WriteStartDocument();
                 writer.Formatting = Formatting.Indented;
-                writer.Indentation = 1;
 
                 writer.WriteDocType("plist", "-//Apple//DTD PLIST 1.0//EN", "http://www.apple.com/DTDs/PropertyList-1.0.dtd", null);
                 writer.WriteStartElement("plist");
                 writer.WriteAttributeString("version", "1.0");
                 writer.WriteStartElement("dict");
 
-                //TODO: Write properties
-
+                foreach(var node in nodes)
+                {
+                    node.WriteToFile(writer);
+                }
+                //TODO: handle the file name and data
             }
-        }
-
-        /// <summary>
-        /// Write a float value to the file.
-        /// </summary>
-        /// <param name="writer">A <see cref="XmlTextWriter"/> to write the value.</param>
-        /// <param name="node">A <see cref="KeyValuePair"/> representing the property to write.</param>
-        private void WriteReal(XmlTextWriter writer, KeyValuePair<string, object> node)
-        {
-            writer.WriteElementString("key", node.Key);
-            writer.WriteElementString("real", node.Value.ToString());
-        }
-
-        /// <summary>
-        /// Write an int value to the file.
-        /// </summary>
-        /// <param name="writer">A <see cref="XmlTextWriter"/> to write the value.</param>
-        /// <param name="node">A <see cref="KeyValuePair"/> representing the property to write.</param>
-        private void WriteInt(XmlTextWriter writer, KeyValuePair<string, object> node)
-        {
-            writer.WriteElementString("key", node.Key);
-            writer.WriteElementString("integer", node.Value.ToString());
-        }
-
-        /// <summary>
-        /// Write a string to the file.
-        /// </summary>
-        /// <param name="writer">A <see cref="XmlTextWriter"/> to write the value.</param>
-        /// <param name="node">A <see cref="KeyValuePair"/> representing the property to write.</param>
-        private void WriteString(XmlTextWriter writer, KeyValuePair<string, object> node)
-        {
-            writer.WriteElementString("key", node.Key);
-            writer.WriteElementString("string", node.Value.ToString());
         }
 
         #endregion Private Methods
