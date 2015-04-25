@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="MyParticlesToolTip" xml:space="preserve">
+    <value>Particles that have been user created.</value>
+  </data>
   <data name="PredefinedParticles" xml:space="preserve">
     <value>Particles that are included in the Cocos2d framework.</value>
   </data>

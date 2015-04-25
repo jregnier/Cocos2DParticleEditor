@@ -16,8 +16,8 @@ namespace Cocos2DParticleEditor
         {
             s_pSharedApplication = this;
 
-            preferredWidth = 1024;
-            preferredHeight = 768;
+            preferredWidth = 500;
+            preferredHeight = 500;
             graphics.PreferredBackBufferWidth = preferredWidth;
             graphics.PreferredBackBufferHeight = preferredHeight;
 
@@ -57,7 +57,7 @@ namespace Cocos2DParticleEditor
 
             CCDrawManager.SetDesignResolutionSize(preferredWidth,
                                                   preferredHeight,
-                                                  resPolicy);
+                                                  resPolicy); 
 
             // turn on display FPS
             //pDirector.DisplayStats = true;

@@ -88,7 +88,7 @@ namespace Cocos2DParticleEditor
             float startRadius, float startRadiusVar, float endRadius, float endRadiusVar, float rotatePerSecond, float rotatePerSecondVar,
             float startSize, float startSizeVar, float endSize, float endSizeVar, CCColor4F startColor, CCColor4F startColorVar, CCColor4F endColor, CCColor4F endColorVar,
             float life, float lifeVar, float angle, float angleVar, CCPoint position, CCPoint positionVar, float startSpin, float startSpinVar, float endSpin, float endSpinVar,
-            float emissionRate, float duration, CCBlendFunc blendFunc, CCEmitterMode emitterMode, int totoalParticles)
+            float emissionRate, float duration, CCBlendFunc blendFunc, CCEmitterMode emitterMode, int totoalParticles, string texturePath, byte[] imageData)
         {
             emitter.Gravity = new CCPoint(gravityX, gravityY);
             emitter.Speed = speed;
@@ -126,6 +126,9 @@ namespace Cocos2DParticleEditor
             emitter.BlendFunc = blendFunc;
             emitter.EmitterMode = emitterMode;
             emitter.TotalParticles = totoalParticles;
+
+            var image = CCTextureCache.SharedTextureCache.AddImage(imageData, texturePath, Microsoft.Xna.Framework.Graphics.SurfaceFormat.Single);
+            emitter.Texture = image;
         }
 
         public static void SetMove(bool moveOn)

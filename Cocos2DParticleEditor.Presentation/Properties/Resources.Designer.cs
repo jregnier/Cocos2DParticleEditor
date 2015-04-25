@@ -61,6 +61,15 @@ namespace Cocos2DParticleEditor.Presentation.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Particles that have been user created..
+        /// </summary>
+        public static string MyParticlesToolTip {
+            get {
+                return ResourceManager.GetString("MyParticlesToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Particles that are included in the Cocos2d framework..
         /// </summary>
         public static string PredefinedParticles {

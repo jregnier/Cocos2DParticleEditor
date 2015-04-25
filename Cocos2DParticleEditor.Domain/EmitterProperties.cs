@@ -10,7 +10,7 @@
     using System.Windows.Media;
     using System.Xml;
     using Cocos2D;
-    using Cocos2DParticleEditor.Domain.CustomPropertyEditors;
+    using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
     /// <summary>
     /// Object representing the properties used in the particle system.
@@ -50,7 +50,7 @@
         private float duration;
         private BlendFunctions blendFunc;
         private CCPositionType positionType;
-        private string texture;
+        private string texturePath;
         private CCEmitterMode emitterMode;
         private int totalParticles;
         private float startSpin;
@@ -720,19 +720,19 @@
         [CategoryAttribute("Common")]
         [DisplayName("Texture")]
         [DescriptionAttribute("The texture used for the particles")]
-        [Editor(typeof(FileLocationEditor), typeof(FileLocationEditor))]
-        public string Texture
+        [ItemsSource(typeof(TextureItemSource))]
+        public string TexturePath
         {
             get
             {
-                return texture;
+                return texturePath;
             }
 
             set
             {
-                if (texture != value)
+                if (texturePath != value)
                 {
-                    texture = value;
+                    texturePath = value;
                     NotifyPropertyChanged();
                 }
             }
@@ -956,7 +956,7 @@
                 new CCColor4F(startColorVar.ScR, startColorVar.ScG, startColorVar.ScB, startColorVar.ScA), new CCColor4F(endColor.ScR, endColor.ScG, endColor.ScB, endColor.ScA),
                 new CCColor4F(endColorVar.ScR, endColorVar.ScG, endColorVar.ScB, endColorVar.ScA), life, lifeVar, angle, angleVar, new CCPoint((float)position.X, (float)position.Y),
                 new CCPoint((float)positionVar.X, (float)positionVar.Y), startSpin, startSpinVar, endSpin, endSpinVar, emissionRate, duration, ParticleUtility.GetCCBlendFunc(blendFunc),
-                emitterMode, totalParticles);
+                emitterMode, totalParticles, texturePath, ParticleUtility.TextureToByteArray(texturePath));
         }
 
         /// <summary>
@@ -1021,20 +1021,11 @@
                 new PListNode("startParticleSizeVariance", this.startSizeVar, PListValueType.REAL),
                 new PListNode("tangentialAccelVariance", this.tangencialAccelVar, PListValueType.REAL),
                 new PListNode("tangentialAcceleration", this.tangencialAccel, PListValueType.REAL),
-                new PListNode("textureFileName", this.texture, PListValueType.STRING)
+                new PListNode("textureFileName", Path.GetFileName(this.texturePath), PListValueType.STRING)
             };
 
-            if (File.Exists(this.texture))
-            {
-                byte[] bytes = File.ReadAllBytes(this.texture);
-
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    string imageData = Encoding.UTF8.GetString(bytes);
-
-                    particleSystemNodes.Add(new PListNode("textureImageData", imageData, PListValueType.STRING));
-                }
-            }
+            string imageData = Encoding.UTF8.GetString(ParticleUtility.TextureToByteArray(this.texturePath));
+            particleSystemNodes.Add(new PListNode("textureImageData", imageData, PListValueType.STRING));
 
             return particleSystemNodes;
         }
@@ -1052,7 +1043,7 @@
                 writer.Formatting = Formatting.Indented;
 
                 writer.WriteDocType("plist", "-//Apple//DTD PLIST 1.0//EN", "http://www.apple.com/DTDs/PropertyList-1.0.dtd", null);
-                writer.WriteStartElement("plist");
+                writer.WriteStartElement("plist"); 
                 writer.WriteAttributeString("version", "1.0");
                 writer.WriteStartElement("dict");
 
@@ -1060,7 +1051,6 @@
                 {
                     node.WriteToFile(writer);
                 }
-                //TODO: handle the file name and data
             }
         }
 

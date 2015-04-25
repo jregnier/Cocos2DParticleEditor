@@ -1,6 +1,10 @@
 ﻿namespace Cocos2DParticleEditor.Domain.Models
 {
     using Cocos2D;
+    using System.Drawing;
+    using System.IO;
+    using System;
+    using System.Text;
 
     /// <summary>
     /// Static class containing tools used to interact with the cocos2d particle systems.
@@ -128,6 +132,26 @@
             }
 
             return func;
+        }
+
+        /// <summary>
+        /// Convert a texture to a byte array string.
+        /// </summary>
+        /// <param name="filePath">The file path to the texture.</param>
+        /// <returns>A array of <see cref="byte"/> representing the texture.</returns>
+        public static byte[] TextureToByteArray(string filePath)
+        {
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                throw new ArgumentNullException("filePath");
+            }
+
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException();
+            }
+
+            return File.ReadAllBytes(filePath);
         }
     }
 }

@@ -68,7 +68,7 @@
                                IsCategorized="True"
                                IsReadOnly="{Binding IsChecked,
                                                     ElementName=_isReadOnly}"
-                               SelectedObject="{Binding Path=ParticleEmitterProperties }"
+                               SelectedObject="{Binding Path=ParticleEmitterProperties}"
                                ShowAdvancedOptions="False"
                                ShowPreview="False"
                                ShowSummary="True"
@@ -82,38 +82,79 @@
 
             <Grid Grid.Column="2" Margin="10,50,10,50">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="60" />
-                    <RowDefinition Height="60" />
                     <RowDefinition Height="1*" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Vertical">
-                    <Label Content="Predefined Particles:" />
-                    <ComboBox ItemsSource="{Binding Path=PredefinedParticlesCollection}"
-                              SelectedItem="{Binding Path=SelectedPredefinedParticle}"
-                              ToolTip="{x:Static resx:Resources.PredefinedParticles}" />
-                </StackPanel>
-                <Grid Grid.Row="1">
-                    <CheckBox Content="Move Particle Emitter" IsChecked="{Binding Path=MoveParticleEmitter}" />
+
+                <!--  particle system options  -->
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                        <RowDefinition Height="60" />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Vertical">
+                        <Label Content="Predefined Particles:" />
+                        <ComboBox ItemsSource="{Binding Path=PredefinedParticlesCollection}"
+                                  SelectedItem="{Binding Path=SelectedPredefinedParticle}"
+                                  ToolTip="{x:Static resx:Resources.PredefinedParticles}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Vertical">
+                        <Label Content="My Particles:" />
+                        <ComboBox ItemsSource="{Binding Path=MyParticlesCollection}" SelectedItem="{Binding Path=SelectedMyParticle}" />
+                    </StackPanel>
+                    <CheckBox Grid.Row="2"
+                              Content="Move Particle Emitter"
+                              IsChecked="{Binding Path=MoveParticleEmitter}"
+                              ToolTip="{x:Static resx:Resources.MyParticlesToolTip}" />
                 </Grid>
-                <Button Grid.Row="3"
-                        Margin="0,5"
-                        Content="Save"
-                        FontSize="16"
-                        Style="{StaticResource ResourceKey=AccentedSquareButtonStyle}" />
-                <Button Grid.Row="4"
-                        Margin="0,5"
-                        Content="Export"
-                        FontSize="16"
-                        Style="{StaticResource ResourceKey=AccentedSquareButtonStyle}">
-                    <i:Interaction.Behaviors>
-                        <behaviors:ExportParticleSystemBehavior Title="Export Particle System"
-                                                                Filter="Property List|*.plist"
-                                                                InitialFolder="c:\"
-                                                                MessageIdentifier="ExportParticleSystem" />
-                    </i:Interaction.Behaviors>
-                </Button>
+
+                <!--  save particle system options  -->
+                <Grid Grid.Row="1" VerticalAlignment="Bottom">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0"
+                            Margin="0,5"
+                            Content="Save"
+                            FontSize="16"
+                            Style="{StaticResource ResourceKey=AccentedSquareButtonStyle}"
+                            ToolTip="Save Changes to Current Particle System." />
+                    <TextBox Grid.Row="2"
+                             VerticalContentAlignment="Center"
+                             FontSize="15"
+                             Text="{Binding Path=SaveAsParticleName,
+                                            UpdateSourceTrigger=PropertyChanged}"
+                             ToolTip="Enter a Particle Name and Click Save As to Create a new Particle."
+                             mah:TextBoxHelper.ClearTextButton="True"
+                             mah:TextBoxHelper.IsWaitingForData="True"
+                             mah:TextBoxHelper.UseFloatingWatermark="False"
+                             mah:TextBoxHelper.Watermark="Particle Name" />
+                    <Button Grid.Row="3"
+                            Margin="0,5"
+                            Command="{Binding Path=SaveAsCommand}"
+                            Content="Save As..."
+                            FontSize="16"
+                            Style="{StaticResource ResourceKey=AccentedSquareButtonStyle}" />
+                    <Button Grid.Row="5"
+                            Margin="0,5"
+                            Content="Export"
+                            FontSize="16"
+                            Style="{StaticResource ResourceKey=AccentedSquareButtonStyle}"
+                            ToolTip="Export Particle System to Disk.">
+                        <i:Interaction.Behaviors>
+                            <behaviors:ExportParticleSystemBehavior Title="Export Particle System"
+                                                                    Filter="Property List|*.plist"
+                                                                    InitialFolder="c:\"
+                                                                    MessageIdentifier="ExportParticleSystem" />
+                        </i:Interaction.Behaviors>
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>
     </mah:MetroContentControl>

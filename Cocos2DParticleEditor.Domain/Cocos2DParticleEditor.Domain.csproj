@@ -67,16 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomPropertyEditors\FileLocationEditor.xaml.cs">
-      <DependentUpon>FileLocationEditor.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\BlendFunc.cs" />
-    <Compile Include="Models\EmitterProperties.cs" />
-    <Compile Include="Models\ParticleEmitter.cs" />
-    <Compile Include="Models\PListNode.cs" />
-    <Compile Include="Models\PListValueType.cs" />
-    <Compile Include="Models\PredefinedParticles.cs" />
+    <Compile Include="BlendFunc.cs" />
+    <Compile Include="EmitterProperties.cs" />
+    <Compile Include="ParticleEmitter.cs" />
+    <Compile Include="PListNode.cs" />
+    <Compile Include="PListValueType.cs" />
+    <Compile Include="PredefinedParticles.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextureItemSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -88,10 +86,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CustomPropertyEditors\FileLocationEditor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Content Include="Textures\particle-fire.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\particle-smoke.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\particle-snow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Textures\stars.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

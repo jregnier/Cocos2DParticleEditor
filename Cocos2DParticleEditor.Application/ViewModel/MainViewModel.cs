@@ -2,6 +2,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Threading;
     using Cocos2DParticleEditor.Application.Messaging;
@@ -17,13 +18,17 @@ namespace Cocos2DParticleEditor.Application.ViewModel
     {
         private Game1 game;
         private IntPtr renderPanelHwnd = IntPtr.Zero;
-        private List<PredefinedParticles> predefinedParticlesCollection = null;
-        private PredefinedParticles selectedPredefinedParticle = PredefinedParticles.Fire;
         private bool isPlaying = false;
         private EmitterProperties particleEmitterProperties = null;
+        private List<PredefinedParticles> predefinedParticlesCollection = null;
+        private PredefinedParticles selectedPredefinedParticle = PredefinedParticles.Fire;
+        private List<string> myParticlesCollection = null;
+        private string selectedMyParticle = null;
         private bool moveParticleEmitter = false;
+        private string saveAsParticleName = null;
         private RelayCommand playCommand = null;
         private RelayCommand stopCommand = null;
+        private RelayCommand saveAsCommand = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainViewModel"/> class.
@@ -34,58 +39,6 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         }
 
         #region Properties
-
-        /// <summary>
-        /// The <see cref="PredefinedParticles" /> property's name.
-        /// </summary>
-        public const string PredefinedParticlesPropertyName = "PredefinedParticles";
-
-        /// <summary>
-        /// Sets and gets the PredefinedParticles property.
-        /// Changes to that property's value raise the PropertyChanged event.
-        /// </summary>
-        public List<PredefinedParticles> PredefinedParticlesCollection
-        {
-            get
-            {
-                if (predefinedParticlesCollection == null)
-                {
-                    predefinedParticlesCollection = Enum.GetValues(typeof(PredefinedParticles)).Cast<PredefinedParticles>().ToList();
-                }
-
-                return predefinedParticlesCollection;
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="SelectedPredefinedParticle" /> property's name.
-        /// </summary>
-        public const string SelectedPredefinedParticlePropertyName = "SelectedPredefinedParticle";
-
-        /// <summary>
-        /// Sets and gets the SelectedPredefinedParticle property.
-        /// Changes to that property's value raise the PropertyChanged event.
-        /// </summary>
-        public PredefinedParticles SelectedPredefinedParticle
-        {
-            get
-            {
-                return selectedPredefinedParticle;
-            }
-
-            set
-            {
-                if (selectedPredefinedParticle == value)
-                {
-                    return;
-                }
-
-                selectedPredefinedParticle = value;
-                RaisePropertyChanged(SelectedPredefinedParticlePropertyName);
-
-                this.SetParticleSystem();
-            }
-        }
 
         /// <summary>
         /// The <see cref="IsPlaying" /> property's name.
@@ -154,6 +107,114 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         public const string MoveParticleEmitterPropertyName = "MoveParticleEmitter";
 
         /// <summary>
+        /// The <see cref="PredefinedParticles" /> property's name.
+        /// </summary>
+        public const string PredefinedParticlesPropertyName = "PredefinedParticles";
+
+        /// <summary>
+        /// Sets and gets the PredefinedParticles property.
+        /// Changes to that property's value raise the PropertyChanged event.
+        /// </summary>
+        public List<PredefinedParticles> PredefinedParticlesCollection
+        {
+            get
+            {
+                if (predefinedParticlesCollection == null)
+                {
+                    predefinedParticlesCollection = Enum.GetValues(typeof(PredefinedParticles)).Cast<PredefinedParticles>().ToList();
+                }
+
+                return predefinedParticlesCollection;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="SelectedPredefinedParticle" /> property's name.
+        /// </summary>
+        public const string SelectedPredefinedParticlePropertyName = "SelectedPredefinedParticle";
+
+        /// <summary>
+        /// Sets and gets the SelectedPredefinedParticle property.
+        /// Changes to that property's value raise the PropertyChanged event.
+        /// </summary>
+        public PredefinedParticles SelectedPredefinedParticle
+        {
+            get
+            {
+                return selectedPredefinedParticle;
+            }
+
+            set
+            {
+                if (selectedPredefinedParticle == value)
+                {
+                    return;
+                }
+
+                selectedPredefinedParticle = value;
+                RaisePropertyChanged(SelectedPredefinedParticlePropertyName);
+
+                this.SetParticleSystem();
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="MyParticlesCollection" /> property's name.
+        /// </summary>
+        public const string MyParticlesCollectionPropertyName = "MyParticlesCollection";
+
+        /// <summary>
+        /// Sets and gets the MyParticlesCollection property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public List<string> MyParticlesCollection
+        {
+            get
+            {
+                return myParticlesCollection;
+            }
+
+            set
+            {
+                if (myParticlesCollection == value)
+                {
+                    return;
+                }
+
+                myParticlesCollection = value;
+                RaisePropertyChanged(MyParticlesCollectionPropertyName);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="SelectedMyParticle" /> property's name.
+        /// </summary>
+        public const string SelectedMyParticlePropertyName = "SelectedMyParticle";
+
+        /// <summary>
+        /// Sets and gets the SelectedMyParticle property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string SelectedMyParticle
+        {
+            get
+            {
+                return selectedMyParticle;
+            }
+
+            set
+            {
+                if (selectedMyParticle == value)
+                {
+                    return;
+                }
+
+                selectedMyParticle = value;
+                RaisePropertyChanged(SelectedMyParticlePropertyName);
+            }
+        }
+
+        /// <summary>
         /// Sets and gets the MoveParticleEmitter property.
         /// Changes to that property's value raise the PropertyChanged event.
         /// </summary>
@@ -175,6 +236,34 @@ namespace Cocos2DParticleEditor.Application.ViewModel
                 RaisePropertyChanged(MoveParticleEmitterPropertyName);
 
                 ParticleLayer.SetMove(moveParticleEmitter);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="SaveAsParticleName" /> property's name.
+        /// </summary>
+        public const string SaveAsParticleNamePropertyName = "SaveAsParticleName";
+
+        /// <summary>
+        /// Sets and gets the SaveAsParticleName property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string SaveAsParticleName
+        {
+            get
+            {
+                return saveAsParticleName;
+            }
+
+            set
+            {
+                if (saveAsParticleName == value)
+                {
+                    return;
+                }
+
+                saveAsParticleName = value;
+                RaisePropertyChanged(SaveAsParticleNamePropertyName);
             }
         }
 
@@ -226,6 +315,28 @@ namespace Cocos2DParticleEditor.Application.ViewModel
             }
         }
 
+        /// <summary>
+        /// The <see cref="SaveAsCommand" /> property's name.
+        /// </summary>
+        public const string SaveAsCommandPropertyName = "SaveAsCommand";
+
+        /// <summary>
+        /// Sets and gets the SaveAsCommand property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public RelayCommand SaveAsCommand
+        {
+            get
+            {
+                if (saveAsCommand == null)
+                {
+                    saveAsCommand = new RelayCommand(this.SaveAsParticleSystem, this.CanSaveAsParticleSystem);
+                }
+
+                return saveAsCommand;
+            }
+        }
+
         #endregion Commands
 
         #region Private Methods
@@ -252,7 +363,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
                 this,
                 arg =>
                 {
-                    SaveAsParticleSystem(arg.Content);
+                    this.ExportParticleSystem(arg.Content);
                 });
         }
 
@@ -312,14 +423,50 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         /// </summary>
         private void SaveParticleSystem()
         {
+
+        }
+
+        /// <summary>
+        /// Indicates if the Save As command can be run.
+        /// </summary>
+        /// <returns>true if the Save As command can be run; otherwise false.</returns>
+        private bool CanSaveAsParticleSystem()
+        {
+            return !string.IsNullOrWhiteSpace(this.saveAsParticleName);
+        }
+
+        /// <summary>
+        /// Save the particle system with as a different file which the editor tracks.
+        /// </summary>
+        private void SaveAsParticleSystem()
+        {
+            string filepath;
+
+            filepath = Path.Combine(Environment.CurrentDirectory, "Particles");
+
+            if (!Directory.Exists(filepath))
+            {
+                Directory.CreateDirectory(filepath);
+            }
+
+            filepath = Path.Combine(filepath, this.saveAsParticleName);
+
+            filepath += filepath + ".plist";
+
+            this.particleEmitterProperties.SaveAs(filepath);
         }
 
         /// <summary>
         /// Export the particle system to a given path.
         /// </summary>
         /// <param name="filePath"></param>
-        private void SaveAsParticleSystem(string filePath)
+        private void ExportParticleSystem(string filePath)
         {
+            if (string.IsNullOrWhiteSpace(filePath))
+            {
+                throw new ArgumentNullException("filePath");
+            }
+
             this.particleEmitterProperties.SaveAs(filePath);
         }
 
