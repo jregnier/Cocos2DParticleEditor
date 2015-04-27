@@ -1,4 +1,4 @@
-﻿namespace Cocos2DParticleEditor.Domain.Models
+﻿namespace Cocos2DParticleEditor.Domain
 {
     /// <summary>
     /// Enumeration identifying the type of plist values available.

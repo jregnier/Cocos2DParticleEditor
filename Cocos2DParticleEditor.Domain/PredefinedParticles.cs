@@ -1,4 +1,4 @@
-﻿namespace Cocos2DParticleEditor.Domain.Models
+﻿namespace Cocos2DParticleEditor.Domain
 {
     /// <summary>
     /// Enumeration identifying the particles that are included in the cocos2d engine.

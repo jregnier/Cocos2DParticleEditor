@@ -1,4 +1,4 @@
-﻿namespace Cocos2DParticleEditor.Domain.Models
+﻿namespace Cocos2DParticleEditor.Domain
 {
     using System;
     using System.Collections.Generic;

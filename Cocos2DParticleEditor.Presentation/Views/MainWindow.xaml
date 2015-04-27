@@ -101,7 +101,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="1" Orientation="Vertical">
                         <Label Content="My Particles:" />
-                        <ComboBox ItemsSource="{Binding Path=MyParticlesCollection}" SelectedItem="{Binding Path=SelectedMyParticle}" />
+                        <ComboBox ItemsSource="{Binding Path=MyParticlesCollection}" DisplayMemberPath="DisplayName" SelectedValuePath="FileName" SelectedItem="{Binding Path=SelectedMyParticle}" />
                     </StackPanel>
                     <CheckBox Grid.Row="2"
                               Content="Move Particle Emitter"

@@ -2,11 +2,12 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
     using System.Threading;
     using Cocos2DParticleEditor.Application.Messaging;
-    using Cocos2DParticleEditor.Domain.Models;
+    using Cocos2DParticleEditor.Domain;
     using GalaSoft.MvvmLight;
     using GalaSoft.MvvmLight.CommandWpf;
     using GalaSoft.MvvmLight.Messaging;
@@ -22,8 +23,8 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         private EmitterProperties particleEmitterProperties = null;
         private List<PredefinedParticles> predefinedParticlesCollection = null;
         private PredefinedParticles selectedPredefinedParticle = PredefinedParticles.Fire;
-        private List<string> myParticlesCollection = null;
-        private string selectedMyParticle = null;
+        private ObservableCollection<CustomParticle> myParticlesCollection = null;
+        private CustomParticle selectedMyParticle = null;
         private bool moveParticleEmitter = false;
         private string saveAsParticleName = null;
         private RelayCommand playCommand = null;
@@ -167,13 +168,17 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         /// Sets and gets the MyParticlesCollection property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-        public List<string> MyParticlesCollection
+        public ObservableCollection<CustomParticle> MyParticlesCollection
         {
             get
             {
+                if (myParticlesCollection == null)
+                {
+                    myParticlesCollection = new ObservableCollection<CustomParticle>(CustomParticle.GetCustomParticles());
+                }
+
                 return myParticlesCollection;
             }
-
             set
             {
                 if (myParticlesCollection == value)
@@ -195,7 +200,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         /// Sets and gets the SelectedMyParticle property.
         /// Changes to that property's value raise the PropertyChanged event. 
         /// </summary>
-        public string SelectedMyParticle
+        public CustomParticle SelectedMyParticle
         {
             get
             {
@@ -451,9 +456,11 @@ namespace Cocos2DParticleEditor.Application.ViewModel
 
             filepath = Path.Combine(filepath, this.saveAsParticleName);
 
-            filepath += filepath + ".plist";
+            filepath += ".plist";
 
             this.particleEmitterProperties.SaveAs(filepath);
+
+            this.MyParticlesCollection = new ObservableCollection<CustomParticle>(CustomParticle.GetCustomParticles());
         }
 
         /// <summary>
@@ -464,7 +471,7 @@ namespace Cocos2DParticleEditor.Application.ViewModel
         {
             if (string.IsNullOrWhiteSpace(filePath))
             {
-                throw new ArgumentNullException("filePath");
+                throw new ArgumentNullException("filePath"); 
             }
 
             this.particleEmitterProperties.SaveAs(filePath);
