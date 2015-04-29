@@ -87,13 +87,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Textures\particle-fire.png">
+    <Content Include="Textures\predefined1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\particle-smoke.png">
+    <Content Include="Textures\smoke.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Textures\particle-snow.png">
+    <Content Include="Textures\snow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Textures\stars.png">

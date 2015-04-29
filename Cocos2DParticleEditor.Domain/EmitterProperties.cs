@@ -51,6 +51,7 @@
         private BlendFunctions blendFunc;
         private CCPositionType positionType;
         private string texturePath;
+        private byte[] textureData;
         private CCEmitterMode emitterMode;
         private int totalParticles;
         private float startSpin;
@@ -918,7 +919,23 @@
             BlendFunc = ParticleUtility.GetBlendFunction(system.BlendFunc);
             EmitterMode = system.EmitterMode;
             TotoalParticles = system.TotalParticles;
-            //TODO: texture
+                
+            var itemSource = new TextureItemSource();
+            var values = itemSource.GetValues();
+            var systemTextueName = Convert.ToString(system.UserData);
+
+            this.TexturePath = null;
+            this.textureData = null;
+
+            if (values.Exists(x => x.DisplayName == systemTextueName))
+            {
+                this.TexturePath = values.Find(x => x.DisplayName == systemTextueName).Value.ToString();
+
+                if (!string.IsNullOrWhiteSpace(TexturePath))
+                {
+                    this.textureData = ParticleUtility.TextureToByteArray(texturePath);
+                }
+            }
 
             propertiesLoaded = true;
         }

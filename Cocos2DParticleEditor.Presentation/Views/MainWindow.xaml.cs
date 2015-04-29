@@ -22,5 +22,10 @@ namespace Cocos2DParticleEditor.Presentation
 
             ElementHost.EnableModelessKeyboardInterop(this);
         }
+
+        private void MetroWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Messenger.Default.Send<ExitGameMessage>(new ExitGameMessage());
+        }
     }
 }

@@ -71,6 +71,8 @@
                     break;
             }
 
+            system.UserData = "predefined1";
+
             return system;
         }
 

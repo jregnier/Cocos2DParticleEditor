@@ -164,6 +164,10 @@
       <Project>{c0b6d38e-1348-48c8-a3f1-fcfe3b2fec11}</Project>
       <Name>Cocos2DParticleEditor.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Cocos2DParticleEditor\Cocos2DParticleEditor.csproj">
+      <Project>{c2aa92ef-1c66-4100-b17b-613ea7cb7bcc}</Project>
+      <Name>Cocos2DParticleEditor</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\WindowsIcons-license.txt" />

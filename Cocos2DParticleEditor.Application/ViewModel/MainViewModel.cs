@@ -370,6 +370,13 @@ namespace Cocos2DParticleEditor.Application.ViewModel
                 {
                     this.ExportParticleSystem(arg.Content);
                 });
+
+            Messenger.Default.Register<ExitGameMessage>(
+                this,
+                arg =>
+                {
+                    game.Exit();
+                });
         }
 
         /// <summary>

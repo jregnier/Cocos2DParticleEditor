@@ -16,7 +16,8 @@
                  ResizeMode="CanResizeWithGrip"
                  WindowStartupLocation="CenterOwner"
                  WindowState="Maximized"
-                 WindowStyle="ThreeDBorderWindow">
+                 WindowStyle="ThreeDBorderWindow"
+                 Closing="MetroWindow_Closing">
 
     <mah:MetroWindow.RightWindowCommands>
         <mah:WindowCommands>
